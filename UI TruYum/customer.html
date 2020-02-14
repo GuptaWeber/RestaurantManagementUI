@@ -1,0 +1,158 @@
+<html>
+<head>
+
+    <style>
+        body{
+            background-color: burlywood;
+    
+        }
+    h1{
+        color: blue;
+        font-family: sans-serif;
+    }
+    .btn1{
+    
+        
+        background-color: crimson;
+        text-align: center;
+        display: inline;
+        border: none;
+        padding: 6px 32px;
+        border-radius: 15px;
+        margin-right: 70px;
+       
+    
+    }
+    .btn2{
+    
+        
+    background-color: crimson;
+    text-align: center;
+    display: inline;
+    border: none;
+    border-radius: 15px;
+    padding: 6px 32px;
+    
+    
+    
+    
+    }
+    .buttn
+    {
+        padding-bottom: 40px;
+    }
+    .iname{
+
+        padding-right: 30px;    
+
+    }
+    .icost{
+        padding-right: 30px; 
+    }
+    .icat{
+        padding-right: 30px; 
+    }
+    .idel{
+        padding-right: 30px; 
+    }
+    .iadd{
+        margin-top: 40px;
+        padding-right: 30px; 
+        
+    }
+    
+    </style>
+    
+
+</head>
+
+<body>
+
+    <center>
+
+    
+<h1>
+    Customer View
+</h1>
+    <div class="buttn">
+        <button onclick="menu()" class="btn1">View Menu</button>
+    
+
+        <button onclick="cart()" class="btn2">View Cart</button>
+    </div>
+   
+    <div id="result" style="float: left;">
+
+    </div>
+
+    <div id="cart" style="float: right; padding-right: 120px;">
+
+    </div>
+    
+</center>
+</body>
+
+<script>
+    
+    var itemcost= new Array(10,50,120,100,80,90,80,100,120,100,60,60,70,60);
+    var itemname= new Array("Samosa","Sandwitch","Pizza","Burger","Noodles","Fried Rice","Manchuria","French Fries","Frankie","Sweet Corn","Pepsi","Coke","Cool Cake","Ice Cream");
+function menu()
+{
+    
+    var itemlaun = new Array("01-01-2020","01-01-2020","01-01-2020","01-01-2020","01-01-2020","01-01-2020","01-01-2020","01-01-2020","01-01-2020","01-01-2020","01-01-2020","01-01-2020","01-01-2020","01-01-2020");
+    var itemcat= new Array("Snacks","Starter","Snacks","Starter","Main Course","Main Course","Starter","Snacks","Snacks","Starter","Drinks","Drinks","Desert","Desert");
+    var itemdel= new Array("Yes","No","Yes","No","Yes","No","Yes","No","Yes","No","Yes","No","Yes","No");
+    var itemava= new Array("Yes","No","Yes","No","Yes","No","Yes","No","Yes","No","Yes","No","Yes","No");
+    var link="cart.html";
+     var tabledata="<h1>MENU</h1><table border='1'><tr><th>Item Id</th><th>Item Name</th><th>Item Cost</th><th>Item Category</th><th>Item LaunchDate</th><th>ItemAvailable Status</th><th>ItemDeliveryStatus</th><th>ADD To Cart</th></tr>"
+        for(var i=0;i<14;i++)
+        {
+            tabledata+="<tr><td>"+(i+1)+"</td><td>"+itemname[i]+"</td><td>"+itemcost[i]+"</td><td>"+itemcat[i]+"</td><td>"+itemlaun[i]+"</td><td>"+itemava[i]+"</td><td>"+itemdel[i]+"</td><td><button value="+itemname[i]+" onclick='addcart("+(i)+")'>Add to Cart</button></td></tr>";
+        }
+    
+    tabledata+="</table>";
+        document.getElementById("result").innerHTML=tabledata;
+}
+var item=new Array();
+var bill= new Array();
+
+function addcart(x)
+{
+        //alert(itemname[x] +"is added of Cost "+itemcost[x]);
+        item.push(itemname[x]);
+        bill.push(itemcost[x]);
+        
+        var items="<h1>YOUR CART</h1><table border='1'><tr><th>Item Name</th><th>Item Cost</th><th>Remove Item</th></tr>";
+    var cost=0;
+        for(var i=0;i<item.length;i++)
+        {
+                items+="<tr><td>"+item[i]+"</td><td>"+bill[i]+"</td><td><button>Remove</button></td></tr>";
+                cost=cost+bill[i];
+        }
+        items+="<tr><td>Total cost is </td><td rowspan='2'>"+cost+"</td></tr>";
+        items+="</table>";
+
+        
+
+
+        document.getElementById('cart').innerHTML=items;
+}
+
+function cart()
+{
+    var items="<h1>YOUR CART</h1><table border='1'><tr><th>Item Name</th><th>Item Cost</th></tr>";
+    var cost=0;
+        for(var i=0;i<item.length;i++)
+        {
+                items+="<tr><td>"+item[i]+"</td><td>"+bill[i]+"</td></tr>";
+                cost=cost+bill[i];
+        }
+        items+="<tr><td>Total cost is </td><td>"+cost+"</td></tr>";
+        items+="</table>";
+        document.getElementById('cart').innerHTML=items;
+}
+
+
+</script>
+
+</html>
